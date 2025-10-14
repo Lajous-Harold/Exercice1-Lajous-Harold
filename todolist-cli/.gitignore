@@ -66,4 +66,3 @@ Thumbs.db
 
 # JSON storage
 *.json
-!tasks.json
