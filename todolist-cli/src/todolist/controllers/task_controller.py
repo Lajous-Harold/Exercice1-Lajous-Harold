@@ -1,53 +1,33 @@
-from todolist.models.task import Task
-from todolist.storage.json_storage import JSONStorage
+from typing import List
+from models.task import Task
 
 class TaskController:
-    def __init__(self, storage_file='tasks.json'):
-        self.storage = JSONStorage(storage_file)
-        self.storage.load()
+    def __init__(self):
+        self._tasks: List[Task] = []
 
-    def add_task(self, title, description=""):
+    def add_task(self, title: str, description: str = "") -> None:
         task = Task(title, description)
-        self.storage.add_task(self._task_to_dict(task))
-        self.storage.save()
+        self._tasks.append(task)
 
-    def remove_task(self, index):
-        tasks = self.storage.get_tasks()
+    def remove_task(self, index_zero_based) -> bool:
         try:
-            index = int(index) - 1
-            if 0 <= index < len(tasks):
-                del tasks[index]
-                self.storage.tasks = tasks
-                self.storage.save()
+            idx = int(index_zero_based)
+            if 0 <= idx < len(self._tasks):
+                del self._tasks[idx]
                 return True
             return False
         except (ValueError, IndexError):
             return False
 
-    def list_tasks(self):
-        return [self._dict_to_task(t) for t in self.storage.get_tasks()]
+    def list_tasks(self) -> List[Task]:
+        return list(self._tasks)
 
-    def mark_task_complete(self, index):
-        tasks = self.storage.get_tasks()
+    def complete_task(self, index_zero_based) -> bool:
         try:
-            index = int(index) - 1
-            if 0 <= index < len(tasks):
-                tasks[index]['completed'] = True
-                self.storage.tasks = tasks
-                self.storage.save()
+            idx = int(index_zero_based)
+            if 0 <= idx < len(self._tasks):
+                self._tasks[idx].completed = True
                 return True
             return False
         except (ValueError, IndexError):
             return False
-
-    def _task_to_dict(self, task):
-        return {
-            'title': task.title,
-            'description': task.description,
-            'completed': getattr(task, 'completed', False)
-        }
-
-    def _dict_to_task(self, d):
-        task = Task(d['title'], d.get('description', ""))
-        task.completed = d.get('completed', False)
-        return task
