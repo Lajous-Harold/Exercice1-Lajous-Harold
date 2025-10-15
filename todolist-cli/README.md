@@ -8,28 +8,15 @@ This project is a command-line interface (CLI) application for managing a ToDo l
 todolist-cli
 ├── src
 │   └── todolist
-│       ├── __init__.py
 │       ├── main.py
+│       ├── app.py
 │       ├── models
-│       │   ├── __init__.py
 │       │   ├── task.py
 │       │   └── recurring_task.py
 │       ├── controllers
-│       │   ├── __init__.py
 │       │   └── task_controller.py
-│       ├── views
-│       │   ├── __init__.py
-│       │   └── cli_view.py
-│       ├── storage
-│       │   ├── __init__.py
-│       │   └── json_storage.py
-│       └── utils
-│           ├── __init__.py
-│           └── validators.py
-├── tests
-│   ├── __init__.py
-│   ├── test_task.py
-│   └── test_controller.py
+│       └── views
+│           └── cli_view.py
 ├── pyproject.toml
 ├── setup.cfg
 ├── requirements.txt
@@ -61,26 +48,11 @@ todolist-cli
 
 ## Usage
 
-You can gérer votre ToDoList directement depuis le terminal avec les commandes suivantes :
+Vous pouvez gérer votre ToDoList avec flask avec postman + :
 
 ```sh
-# Ajouter une tâche
-python src/todolist/main.py add "Titre de la tâche" "Description optionnelle"
-
-# Lister toutes les tâches
-python src/todolist/main.py list
-
-# Supprimer une tâche (par son numéro)
-python src/todolist/main.py remove <id>
-
-# Marquer une tâche comme complétée
-python src/todolist/main.py complete <id>
-
-# Afficher l'aide
-python src/todolist/main.py help
+python src/todolist/app.py
 ```
-
-Les tâches sont sauvegardées dans un fichier `tasks.json` à la racine du projet.
 
 ## Contributing
 
