@@ -2,28 +2,6 @@
 
 This project is a command-line interface (CLI) application for managing a ToDo list. It is structured using the Model-View-Controller (MVC) design pattern and follows object-oriented programming principles.
 
-## Project Structure
-
-```
-todolist-cli
-├── src
-│   └── todolist
-│       ├── main.py
-│       ├── app.py
-│       ├── models
-│       │   ├── task.py
-│       │   └── recurring_task.py
-│       ├── controllers
-│       │   └── task_controller.py
-│       └── views
-│           └── cli_view.py
-├── pyproject.toml
-├── setup.cfg
-├── requirements.txt
-├── .gitignore
-└── README.md
-```
-
 ## Features
 
 - **Task Management**: Add, remove, complete, and list tasks from the command line.
@@ -37,11 +15,7 @@ todolist-cli
    ```sh
    git clone <repository-url>
    ```
-2. Navigate to the project directory:
-   ```sh
-   cd todolist-cli
-   ```
-3. Install the required dependencies:
+2. Install the required dependencies:
    ```sh
    pip install -r requirements.txt
    ```
@@ -51,7 +25,7 @@ todolist-cli
 Vous pouvez gérer votre ToDoList avec flask avec postman + :
 
 ```sh
-python src/todolist/app.py
+python app.py
 ```
 
 ## Contributing
